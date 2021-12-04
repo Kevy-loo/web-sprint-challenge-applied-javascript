@@ -1,4 +1,39 @@
+import axios from 'axios'
+
 const Card = (article) => {
+   
+
+  const mainCard = document.createElement('div');
+  const headline = document.createElement('div');
+  const author = document.createElement('div');
+  const imageContainer = document.createElement('div');
+  const image = document.createElement('img');
+  const authorName = document.createElement('span');
+
+  mainCard.classList.add('card');
+  headline.classList.add('headline');
+  author.classList.add('author');
+  imageContainer.classList.add('img-container');
+
+  mainCard.appendChild(author);
+  mainCard.appendChild(headline);
+  author.appendChild(imageContainer);
+  imageContainer.appendChild(image);
+  author.appendChild(authorName);
+
+  image.src = article.authorPhoto;
+  authorName.textContent = article.authorName;
+  headline.textContent = article.headline;
+
+  mainCard.addEventListener('click', () => {
+      console.log(article.headline);
+  })
+
+
+  return mainCard;
+
+
+
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -20,6 +55,34 @@ const Card = (article) => {
 }
 
 const cardAppender = (selector) => {
+  axios.get('http://localhost:5000/api/articles')
+  .then(response => {
+  //   console.log(response.data.articles)
+  //   document.querySelector(selector).append(Card(response.data.articles));
+
+  //   })
+    response.data.articles['bootstrap'].forEach(element => {
+      const outer = document.querySelector(selector);
+      outer.append(Card(element))
+    })
+    response.data.articles['javascript'].forEach(element => {
+      const outer = document.querySelector(selector);
+      outer.append(Card(element))
+    })
+    response.data.articles['jquery'].forEach(element => {
+      const outer = document.querySelector(selector);
+      outer.append(Card(element))
+    })
+    response.data.articles['node'].forEach(element => {
+      const outer = document.querySelector(selector);
+      outer.append(Card(element))
+    })
+    response.data.articles['technology'].forEach(element => {
+      const outer = document.querySelector(selector);
+      outer.append(Card(element))
+    })
+    
+  })
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.

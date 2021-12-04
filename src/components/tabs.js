@@ -24,7 +24,7 @@ const Tabs = (topics) => {
     
     tab.textContent = element;
     topicDiv.appendChild(tab);
-    console.log(tab)
+    // console.log(tab)
 
 
 
@@ -61,7 +61,7 @@ const Tabs = (topics) => {
 const tabsAppender = (selector) => {
   axios.get(`http://localhost:5000/api/topics`)
   .then(response => {
-    console.log(response.data)
+    // console.log(response.data)
     document.querySelector(selector).append(Tabs(response.data.topics));
 })
 

@@ -1,3 +1,4 @@
+
 const Header = (title, date, temp) => {
   
   //creating elements
